@@ -6,9 +6,7 @@ package element
 func (e *Element) IsEmpty() bool {
 	// HINWEIS:
 	// Überprüfen Sie, ob der next-Pointer nil ist.
-	// begin:solution
 	return e.next == nil
-	// end:solution
 }
 
 // Value liefert den Wert des Elements.
@@ -18,12 +16,10 @@ func (e *Element) Value() int {
 	// Überprüfen Sie, ob das Element leer ist (mit IsEmpty).
 	// Wenn ja, lösen Sie eine panic aus.
 	// Ansonsten geben Sie den value zurück.
-	// begin:solution
 	if e.IsEmpty() {
 		panic("value for empty element requested")
 	}
 	return e.value
-	// end:solution
 }
 
 // Next liefert das Nachfolger-Element.
@@ -33,12 +29,10 @@ func (e *Element) Next() *Element {
 	// Überprüfen Sie, ob das Element leer ist (mit IsEmpty).
 	// Wenn ja, lösen Sie eine panic aus.
 	// Ansonsten geben Sie den next-Pointer zurück.
-	// begin:solution
 	if e.IsEmpty() {
 		panic("next element for empty element requested")
 	}
 	return e.next
-	// end:solution
 }
 
 // SetValue setzt den Wert des Elements.
@@ -49,10 +43,8 @@ func (e *Element) SetValue(value int) {
 	//   Erstellen Sie ein neues leeres Element und weise es dem next-Pointer zu.
 	//   Setzen Sie den value auf den gegebenen Wert.
 	// Ansonsten setzen Sie einfach den value auf den gegebenen Wert.
-	// begin:solution
 	if e.IsEmpty() {
 		e.next = Empty()
 	}
 	e.value = value
-	// end:solution
 }
