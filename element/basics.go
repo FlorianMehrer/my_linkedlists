@@ -4,26 +4,38 @@ package element
 // Ein Element ist leer, wenn es kein Nachfolger-Element hat.
 // D.h. wenn der Nachfolger-Pointer nil ist.
 func (e *Element) IsEmpty() bool {
-	// TODO
-	return false
+
+	return e.next == nil
 }
 
 // Value liefert den Wert des Elements.
 // Für ein leeres Element wird eine panic ausgelöst.
 func (e *Element) Value() int {
-	// TODO
-	return 0
+	if e.IsEmpty() == true {
+		panic ("value for empty element requested")
+			
+	}
+	return e.value
 }
 
 // Next liefert das Nachfolger-Element.
 // Für ein leeres Element wird eine panic ausgelöst.
 func (e *Element) Next() *Element {
-	// TODO
-	return nil
+	if e.IsEmpty() {
+		panic("value for empty element requested")
+	}
+	f := e.next
+	return f
 }
 
 // SetValue setzt den Wert des Elements.
 // Falls das Element bisher leer war, wird es mit dem gegebenen Wert initialisiert.
 func (e *Element) SetValue(value int) {
-	// TODO
+	e.value = value 
+	if e.IsEmpty() {
+		e.next = Empty()
+	
+
+	
+	}
 }
