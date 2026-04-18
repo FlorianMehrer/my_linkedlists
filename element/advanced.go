@@ -1,5 +1,7 @@
 package element
 
+import "fmt"
+
 // Append fügt ein neues Element mit dem gegebenen Wert am Ende der Liste ein.
 func (e *Element) Append(value int) {
 	if e.IsEmpty() == true {
@@ -31,43 +33,82 @@ func (e *Element) Contains(value int) bool {
 
 // Count gibt die Anzahl der Elemente in der Liste zurück, die den gegebenen Wert enthalten.
 func (e *Element) Count(value int) int {
-	// TODO
-	return 0
+	if e.IsEmpty() {
+		return 0
+	}
+
+	if e.value == value {
+		return e.next.Count(value) + 1
+	} else {
+		return e.next.Count(value)
+	}
+
 }
 
 // Sum berechnet die Summe der Werte aller Elemente in der Liste.
 func (e *Element) Sum() int {
-	// TODO
-	return 0
+	if e.IsEmpty() {
+		return 0
+	}
+	return e.next.Sum() + e.value
 }
 
 // Min gibt den kleinsten Wert aller Elemente in der Liste zurück.
 // Falls die Liste leer ist, wird eine panic ausgelöst.
 func (e *Element) Min() int {
-	// TODO
-	return 0
+	if e.IsEmpty() {
+		panic("List is empty")
+
+	}
+	return e.Mini()
+}
+
+func (e *Element) Mini() int {
+	if e.IsEmpty() {
+		return 10000000000
+	}
+	if e.value < e.next.Mini() {
+		return e.value
+	} else {
+		return e.next.Mini()
+	}
+
 }
 
 // Last gibt das letzte Element der Liste zurück.
 // Falls die Liste leer ist, wird eine panic ausgelöst.
 func (e *Element) Last() *Element {
-	// TODO
-	return nil
+	if e.IsEmpty() {
+		panic("List is empty")
+	}
+	if e.next.IsEmpty() {
+		return e
+	}
+	return e.next.Last()
 }
 
 // At gibt das Element an der gegebenen Position zurück.
 // Falls die Position nicht existiert, wird eine panic ausgelöst.
 func (e *Element) At(position int) *Element {
-	// TODO
-	return nil
+
+	if e.IsEmpty() {
+		panic("index out of bounds")
+	}
+	if position == 0 {
+		return e
+	}
+
+	return e.next.At(position - 1)
 }
 
 // String gibt eine textuelle Repräsentation der Liste zurück.
 // Die Elemente werden durch " -> " getrennt.
 // Falls die Liste leer ist, wird ein leerer String zurückgegeben.
 func (e *Element) String() string {
-	// TODO
-	return ""
+	if e.next.IsEmpty() {
+		return fmt.Sprintf("%d", e.value)
+	}
+	return fmt.Sprintf("%d", e.value) + " -> " + e.next.String()
 }
 
 // Swap vertauscht die beiden Elemente an den Stellen i und j.
