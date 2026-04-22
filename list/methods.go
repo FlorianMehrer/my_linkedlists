@@ -22,13 +22,15 @@ func (l *List) String() string {
 
 // Append fügt ein neues Element mit dem gegebenen Wert am Ende der Liste ein.
 func (l *List) Append(value int) {
-	// TODO
+	return l.Append(value)
 }
 
 // Length gibt die Anzahl der Elemente in der Liste zurück.
 func (l *List) Length() int {
-	// TODO
-	return 0
+	if l.IsEmpty() {
+		return 0
+	}
+	return l.head.next.Lenght() +1 
 }
 
 // Contains gibt an, ob ein Element mit dem gegebenen Wert in der Liste enthalten ist.

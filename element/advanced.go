@@ -105,6 +105,9 @@ func (e *Element) At(position int) *Element {
 // Die Elemente werden durch " -> " getrennt.
 // Falls die Liste leer ist, wird ein leerer String zurückgegeben.
 func (e *Element) String() string {
+	if e.IsEmpty() {
+		return ""
+	}
 	if e.next.IsEmpty() {
 		return fmt.Sprintf("%d", e.value)
 	}
@@ -117,7 +120,30 @@ func (e *Element) String() string {
 
 // Es sollen nicht die Werte der Elemente vertauscht werden, sondern die Elemente selbst.
 func (e *Element) Swap(i, j int) *Element {
-	// TODO
-	return e
+
+	if i >= j {
+		if i == 0 {
+			return 
+		}
+		if j == 1 {
+			a := e.next
+			b := e.next.next
+			e.next = b
+			e.next.next = a
+			return e.next.Swap(i-1, j)
+
+		}
+
+	}
+
+	if j >= i {
+		for a := j; a >= 0; a -- {
+
+		
+
+		
+		}
+
+	}
 
 }
